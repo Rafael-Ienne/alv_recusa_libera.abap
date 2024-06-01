@@ -4,4 +4,7 @@ ocorre a seleção dos itens de venda na tabela VBAP e a exibição dos mesmos. 
 Tal processo ocorre mediante o uso da BAPI (módulo de função que permite realizar uma função empresarial específica) denominada 'BAPI_SALESORDER_CHANGE'.
 
 ## Tela de seleção
+![Tela de seleção](https://raw.githubusercontent.com/Rafael-Ienne/alv_recusa_libera.abap/main/img/tela_selecao.png)
 
+# Antes do bloqueio da venda do item
+![Antes do bloqueio](https://raw.githubusercontent.com/Rafael-Ienne/alv_recusa_libera.abap/main/img/tela_selecao.png)
