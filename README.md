@@ -13,6 +13,9 @@ Tal processo ocorre mediante o uso da BAPI (módulo de função que permite real
 ## Tela de seleção
 ![Tela de seleção](https://raw.githubusercontent.com/Rafael-Ienne/alv_recusa_libera.abap/main/img/tela_selecao.png)
 
+## Retorno de todos os registros
+![Retorno registros](https://raw.githubusercontent.com/Rafael-Ienne/alv_recusa_libera.abap/main/img/retorno_todos_registros.png)
+
 # Antes do bloqueio da venda do item
 ![Antes do bloqueio](https://raw.githubusercontent.com/Rafael-Ienne/alv_recusa_libera.abap/main/img/antes_bloqueio.png)
 
