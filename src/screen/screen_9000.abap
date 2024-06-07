@@ -1,0 +1,8 @@
+PROCESS BEFORE OUTPUT.
+  MODULE set_pf_status.
+  CALL SUBSCREEN sub INCLUDING sy-repid '2100'.
+  MODULE show_alv.
+
+PROCESS AFTER INPUT.
+  MODULE user_command_9000.
+  CALL SUBSCREEN sub.
