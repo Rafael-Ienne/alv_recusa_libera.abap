@@ -22,7 +22,7 @@ Tal processo ocorre mediante o uso da BAPI (módulo de função que permite real
 # Após bloqueio da venda do item
 ![Após bloqueio](https://raw.githubusercontent.com/Rafael-Ienne/alv_recusa_libera.abap/main/img/apos_recusa.png)
 
-# Antes liberação da venda do item
+# Antes da liberação da venda do item
 ![Antes liberação](https://raw.githubusercontent.com/Rafael-Ienne/alv_recusa_libera.abap/main/img/antes_liberacao.png)
 
 # Após liberação da venda do item
