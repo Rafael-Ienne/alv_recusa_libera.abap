@@ -14,31 +14,25 @@ Este programa deve ter uma tela inicial contendo parâmetro ordem de venda (vbak
 
 Dados do relatório
 O relatório deve conter os seguintes campos:
-Tabela VBAK: Ordem de Vendas
-VBELN ERDAT ERNAM NETWR WAERK VKORG VTWEG SPART GBSTK KUNNR
+Tabela VBAP: Itens da Ordem de Vendas
+vbeln ,
+posnr,
+matnr,
+arktx,
+kwmeng,
+vrkme,
+abgru .
 
-Tabela VBAP: Itens da ordem de venda
-POSNR MATNR ARKTX ABGRU
-Selecionar dados onde VBAP-VBELN = VBAK-VBELN.
-
-Tabela KNA1: Cliente
-NAME1
-Encontrar NAME1 onde KUNNR = vbak-kunnr
-
-Inserir motivo de recusa.
 Para inserir motivo de recusa deve ser usada as BAPI BAPI_SALESORDER_CHANGE.
 Os parâmetros da bapi devem ser preenchidos da seguinte forma:
-SALESDOCUMENT: número da ordem VBAK-VBELN
-ORDER_HEADER_INX-UPDATEFLAG: U
+- SALESDOCUMENT: número da ordem VBAK-VBELN
+- ORDER_HEADER_INX-UPDATEFLAG: U
+- ORDER_ITEM_IN-ITM_NUMBER: VBAP-POSNR
+- ORDER_ITEM_IN-REASON_REJ: “00” (sem aspas) para recusar e " " para liberar
+- ORDER_ITEM_INX-ITM_NUMBER: VBAP-POSNR
+- ORDER_ITEM_INX-REASON_REJ: “X” (sem aspas)
 
-ORDER_ITEM_IN-ITM_NUMBER: VBAP-POSNR
-ORDER_ITEM_IN-REASON_REJ: “00” (sem aspas)
 
-ORDER_ITEM_INX-ITM_NUMBER: VBAP-POSNR
-ORDER_ITEM_INX-REASON_REJ: “X” (sem aspas)
-
-Caso a tabela RETURN não retorne nenhum erro, executar a função BAPI_TRANSACTION_COMMIT
-Caso a tabela RETURN retorne algum erro, executar a função BAPI_TRANSACTION_ROLLBACK
 ORIENTAÇÕES TÉCNICAS:
 O que voce precisa saber de ABAP:
 - tabelas internas
