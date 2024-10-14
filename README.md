@@ -1,4 +1,4 @@
-# Projeto recusa / liberação de vendas
+# Monitor de status de vendas
 Este projeto, focado no módulo SD(Sales and Distributions), busca praticar a construção de relatórios ALV, uso de BAPI e interpretação de especificações funcionais. 
 
 ## Especificação funcional
