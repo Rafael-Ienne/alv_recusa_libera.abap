@@ -45,7 +45,10 @@ ENDFORM.
 *&-------------------------------------------------------------------------------------------------*
 *& Form para recusar a venda de um item usando BAPI com base no número de documento de venda(VBELN)
 *&-------------------------------------------------------------------------------------------------*
-FORM f_recusar_liberar_com_bapi USING p_doc_venda TYPE ty_doc_venda.
+FORM f_recusar_liberar_com_bapi USING p_doc_venda TYPE ty_doc_venda
+                                      id_sy_ucomm TYPE sy-ucomm.
+
+  DATA(ld_sy_ucomm) = id_sy_ucomm.
 
   DATA: ld_header TYPE bapisdh1x,
         lt_return TYPE STANDARD TABLE OF bapiret2,
@@ -56,7 +59,7 @@ FORM f_recusar_liberar_com_bapi USING p_doc_venda TYPE ty_doc_venda.
 
   ls_item-itm_number = p_doc_venda-posnr.
 
-  IF sy-ucomm EQ 'RECUSAR'.
+  IF ld_sy_ucomm EQ 'RECUSAR'.
     ls_item-reason_rej = '00'.
   ELSE.
     ls_item-reason_rej = ''.
@@ -84,20 +87,26 @@ FORM f_recusar_liberar_com_bapi USING p_doc_venda TYPE ty_doc_venda.
     EXPORTING
       wait = 'X'.
 
+  IF ld_sy_ucomm EQ 'RECUSAR'.
+    MESSAGE 'Item recusado com sucesso' TYPE 'S'.
+  ELSEIF ld_sy_ucomm EQ 'LIBERAR'.
+    MESSAGE 'Item liberado com sucesso' TYPE 'S'.
+  ENDIF.
+
 ENDFORM.
 
 *&----------------------------------------------------------------------------*
 *& Form para recusar a venda de um item com base no número de documento (VBELN)
 *&----------------------------------------------------------------------------*
-FORM f_recusar_ou_liberar.
+FORM f_recusar_ou_liberar USING id_sy_ucomm.
 
   go_alv->get_selected_rows(
         IMPORTING
           et_index_rows = gt_rows "Pegando as linhas selecionadas no ALV
       ).
 
- IF lines( gt_rows ) IS INITIAL.
-    MESSAGE 'Selecione ao menos uma linha' TYPE 'I' DISPLAY LIKE 'E'.
+  IF lines( gt_rows ) IS INITIAL.
+    MESSAGE 'Selecione uma linha' TYPE 'I' DISPLAY LIKE 'E'.
   ELSE.
 
     LOOP AT gt_rows INTO DATA(ls_row).
@@ -105,7 +114,7 @@ FORM f_recusar_ou_liberar.
       READ TABLE gt_docs_venda INTO gs_doc_venda INDEX ls_row-index.
 
       IF sy-subrc IS INITIAL.
-        PERFORM f_recusar_liberar_com_bapi USING gs_doc_venda.
+        PERFORM f_recusar_liberar_com_bapi USING gs_doc_venda id_sy_ucomm.
       ENDIF.
 
       PERFORM f_selecionar_dados.
