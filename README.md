@@ -1,7 +1,55 @@
 # Projeto recusa / liberação de vendas
-Este projeto, focado no módulo SD(Sales and Distributions), busca praticar a construção de relatórios ALV e uso de BAPI. Com base em um range de números de documentos de vendas passado na tela de seleção,
-ocorre a seleção dos itens de venda na tabela VBAP e a exibição dos mesmos em um ALV. Caso o usuário queira bloquear a venda de um determinado item, ele deve selecionar uma linha no ALV e clicar no botão "Recusar", definindo o campo ABGRU da tabela transparente VBAP para '00'. Por outro lado, se o usuário deseja liberar a venda do item, ele precisa selecionar uma linha no ALV e clicar no botão "Liberar", definindo o campo ABGRU da tabela transparente VBAP para vazio.
-Tal processo ocorre mediante o uso da BAPI (módulo de função que permite realizar uma função empresarial específica) denominada 'BAPI_SALESORDER_CHANGE'.
+Este projeto, focado no módulo SD(Sales and Distributions), busca praticar a construção de relatórios ALV, uso de BAPI e interpretação de especificações funcionais. 
+
+## Especificação funcional
+
+Criar um programa que selecione os itens das ordens de venda e mostre o resultado em forma de relatório.
+O relatório deve ter um cabeçalho contendo um botão de ação chamado RECUSAR e outro chamado LIBERAR.
+O relatório deve permitir selecionar uma ou várias linhas.
+Ao clicar no botão recusar, o programa vai inserir motivo de recusa ‘00’ (sem aspas) nos itens das ordens de vendas selecionados.
+Ao clicar no botão liberar, o programa vai inserir motivo de recusa ‘ ’ (sem aspas) nos itens das ordens de vendas selecionados.
+
+Tela de seleção
+Este programa deve ter uma tela inicial contendo parâmetro ordem de venda (vbak-vbeln) para usar como filtro. 
+
+Dados do relatório
+O relatório deve conter os seguintes campos:
+Tabela VBAK: Ordem de Vendas
+VBELN ERDAT ERNAM NETWR WAERK VKORG VTWEG SPART GBSTK KUNNR
+
+Tabela VBAP: Itens da ordem de venda
+POSNR MATNR ARKTX ABGRU
+Selecionar dados onde VBAP-VBELN = VBAK-VBELN.
+
+Tabela KNA1: Cliente
+NAME1
+Encontrar NAME1 onde KUNNR = vbak-kunnr
+
+Inserir motivo de recusa.
+Para inserir motivo de recusa deve ser usada as BAPI BAPI_SALESORDER_CHANGE.
+Os parâmetros da bapi devem ser preenchidos da seguinte forma:
+SALESDOCUMENT: número da ordem VBAK-VBELN
+ORDER_HEADER_INX-UPDATEFLAG: U
+
+ORDER_ITEM_IN-ITM_NUMBER: VBAP-POSNR
+ORDER_ITEM_IN-REASON_REJ: “00” (sem aspas)
+
+ORDER_ITEM_INX-ITM_NUMBER: VBAP-POSNR
+ORDER_ITEM_INX-REASON_REJ: “X” (sem aspas)
+
+Caso a tabela RETURN não retorne nenhum erro, executar a função BAPI_TRANSACTION_COMMIT
+Caso a tabela RETURN retorne algum erro, executar a função BAPI_TRANSACTION_ROLLBACK
+ORIENTAÇÕES TÉCNICAS:
+O que voce precisa saber de ABAP:
+- tabelas internas
+- operações de leitura (select)
+- loop, read table, select for all entries
+- append
+-funções 
+- classes
+- Status gui
+- ALV com classes
+
 
 ## Conhecimentos aplicados
 - Dicionário de dados(SE11);
