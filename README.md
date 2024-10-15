@@ -73,19 +73,19 @@ Caso a tabela RETURN retorne algum erro, executar a função BAPI_TRANSACTION_RO
 - ALV com classes.
 
 ## Tela de seleção
-![Tela de seleção](https://raw.githubusercontent.com/Rafael-Ienne/alv_recusa_libera.abap/main/img/tela_selecao.png)
+![Tela de seleção](https://raw.githubusercontent.com/Rafael-Ienne/alv_recusa_libera.abap/refs/heads/main/img/tela_selecao.png)
 
 ## Retorno de todos os registros
-![Retorno registros](https://raw.githubusercontent.com/Rafael-Ienne/alv_recusa_libera.abap/main/img/retorno_todos_registros.png)
+![Retorno registros](https://raw.githubusercontent.com/Rafael-Ienne/alv_recusa_libera.abap/refs/heads/main/img/TELA_COM_RESULTADOS.png)
 
 # Antes do bloqueio da venda do item
-![Antes do bloqueio](https://raw.githubusercontent.com/Rafael-Ienne/alv_recusa_libera.abap/main/img/antes_bloqueio.png)
+![Antes do bloqueio](https://raw.githubusercontent.com/Rafael-Ienne/alv_recusa_libera.abap/refs/heads/main/img/TELA_ANTES_BLOQUEIO_VENDA.png)
 
 # Após bloqueio da venda do item
-![Após bloqueio](https://raw.githubusercontent.com/Rafael-Ienne/alv_recusa_libera.abap/main/img/apos_recusa.png)
+![Após bloqueio](https://raw.githubusercontent.com/Rafael-Ienne/alv_recusa_libera.abap/refs/heads/main/img/TELA_APOS_BLOQUEIO_VENDA.png)
 
 # Antes da liberação da venda do item
-![Antes liberação](https://raw.githubusercontent.com/Rafael-Ienne/alv_recusa_libera.abap/main/img/antes_liberacao.png)
+![Antes liberação](https://raw.githubusercontent.com/Rafael-Ienne/alv_recusa_libera.abap/refs/heads/main/img/TELA_ANTES_LIBERACAO_VENDA.png)
 
 # Após liberação da venda do item
-![Após liberação](https://raw.githubusercontent.com/Rafael-Ienne/alv_recusa_libera.abap/main/img/apos_liberacao.png)
+![Após liberação](https://raw.githubusercontent.com/Rafael-Ienne/alv_recusa_libera.abap/refs/heads/main/img/TELA_APOS_LIBERACAO_VENDA.png)
