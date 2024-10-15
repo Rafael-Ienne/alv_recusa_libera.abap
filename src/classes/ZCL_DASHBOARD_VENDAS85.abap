@@ -65,7 +65,9 @@ public section.
   methods BLOQUEAR_ITEM_VENDA
     importing
       value(IS_ITEM_VENDA) type TY_RELATORIO
-      !ID_CODIGO_BOTAO type SALV_DE_FUNCTION .
+      value(ID_CODIGO_BOTAO) type SALV_DE_FUNCTION
+    returning
+      value(RD_MOTIVO_RECUSA) type VBAP-ABGRU .
   methods SET_TABELA_RELATORIO
     importing
       value(IT_TABELA_RELATORIO) type LTT_RELATORIO .
@@ -96,6 +98,7 @@ CLASS ZCL_DASHBOARD_VENDAS85 IMPLEMENTATION.
 * +-------------------------------------------------------------------------------------------------+
 * | [--->] IS_ITEM_VENDA                  TYPE        TY_RELATORIO
 * | [--->] ID_CODIGO_BOTAO                TYPE        SALV_DE_FUNCTION
+* | [<-()] RD_MOTIVO_RECUSA               TYPE        VBAP-ABGRU
 * +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD bloquear_item_venda.
 
@@ -111,8 +114,10 @@ CLASS ZCL_DASHBOARD_VENDAS85 IMPLEMENTATION.
     ls_item-itm_number = is_item_venda-posnr.
     IF ld_botao EQ 'REC'.
       ls_item-reason_rej = '00'.
+      rd_motivo_recusa = '00'.
     ELSEIF ld_botao EQ 'LIB'.
       ls_item-reason_rej = ' '.
+      rd_motivo_recusa = ' '.
     ENDIF.
     APPEND ls_item TO lt_itens.
 
