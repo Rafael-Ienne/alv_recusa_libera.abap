@@ -62,6 +62,16 @@ Caso a tabela RETURN não retorne nenhum erro, executar a função BAPI_TRANSACT
 
 Caso a tabela RETURN retorne algum erro, executar a função BAPI_TRANSACTION_ROLLBACK
 
+## Skills aplicadas
+- tabelas internas;
+- operações de leitura (select);
+- loop, read table, select for all entries;
+- append;
+- funções;
+- classes;
+- Status gui;
+- ALV com classes.
+
 ## Tela de seleção
 ![Tela de seleção](https://raw.githubusercontent.com/Rafael-Ienne/alv_recusa_libera.abap/refs/heads/main/img/tela_selecao.png)
 
