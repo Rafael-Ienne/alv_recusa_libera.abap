@@ -14,7 +14,7 @@ FORM f_gerar_alv.
   go_alv->set_screen_status(
     report        = sy-repid
     pfstatus      = 'STATUS_ST'
-    set_functions = cl_salv_model_base=>c_functions_all
+    set_functions = cl_salv_model_base=>c_functions_default
   ).
 
   DATA: lo_selections TYPE REF TO cl_salv_selections.
@@ -51,13 +51,19 @@ FORM f_tratar_b_recusar USING e_salv_function.
 
         LOOP AT lt_rows INTO DATA(ls_row).
 
-          READ TABLE gt_relatorio INTO DATA(gs_relatorio) INDEX ls_row.
+          READ TABLE gt_relatorio ASSIGNING FIELD-SYMBOL(<fs_relatorio>) INDEX ls_row.
 
-          lo_relatorio->bloquear_item_venda( is_item_venda = gs_relatorio id_codigo_botao = e_salv_function ).
+          DATA(ld_motivo_recusa) = lo_relatorio->bloquear_item_venda( is_item_venda = <fs_relatorio> id_codigo_botao = e_salv_function ).
+
+          <fs_relatorio>-abgru = ld_motivo_recusa.
 
         ENDLOOP.
 
       ENDIF.
+
+    WHEN 'REFRE'.
+      go_alv->refresh( refresh_mode = if_salv_c_refresh=>full ).
+      cl_gui_cfw=>flush( ).
 
   ENDCASE.
 
