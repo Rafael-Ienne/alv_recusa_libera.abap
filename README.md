@@ -1,14 +1,37 @@
-# Projeto recusa / liberação de vendas
-Este projeto, focado no módulo SD(Sales and Distributions), busca praticar a construção de relatórios ALV, module pool e uso de BAPI. Com base em um range de números de documentos de vendas passado na tela de seleção,
-ocorre a seleção dos itens de venda na tabela VBAP e a exibição dos mesmos. Caso o usuário queira bloquear a venda de um determinado item, ele deve selecionar uma linha no ALV e clicar no botão "Recusar", definindo o campo ABGRU da tabela transparente VBAP para '00'. Por outro lado, se o usuário deseja liberar a venda do item, ele precisa selecionar uma linha no ALV e clicar no botão "Liberar", definindo o campo ABGRU da tabela transparente VBAP para vazio.
-Tal processo ocorre mediante o uso da BAPI (módulo de função que permite realizar uma função empresarial específica) denominada 'BAPI_SALESORDER_CHANGE'.
+# Monitor de status de vendas
+Este projeto, focado no módulo SD(Sales and Distributions), busca praticar a construção de relatórios ALV, uso de BAPI e interpretação de especificações funcionais. 
+
+## Especificação funcional
+
+Criar um programa que selecione os itens das ordens de venda e mostre o resultado em forma de relatório.
+O relatório deve ter um cabeçalho contendo um botão de ação chamado RECUSAR e outro chamado LIBERAR.
+O relatório deve permitir selecionar uma ou várias linhas.
+Ao clicar no botão recusar, o programa vai inserir motivo de recusa ‘00’ (sem aspas) nos itens das ordens de vendas selecionados.
+Ao clicar no botão liberar, o programa vai inserir motivo de recusa ‘ ’ (sem aspas) nos itens das ordens de vendas selecionados.
+
+Tela de seleção:
+- Este programa deve ter uma tela inicial contendo parâmetro ordem de venda (vbak-vbeln) para usar como filtro. 
+
+Dados do relatório:
+- O relatório deve conter os seguintes campos da tabela VBAP (Itens da Ordem de Vendas): vbeln, posnr, matnr, arktx, kwmeng, vrkme, abgru.
+
+Para inserir motivo de recusa deve ser usada a BAPI BAPI_SALESORDER_CHANGE.
+Os parâmetros da BAPI devem ser preenchidos da seguinte forma:
+- SALESDOCUMENT: número da ordem VBAK-VBELN
+- ORDER_HEADER_INX-UPDATEFLAG: U
+- ORDER_ITEM_IN-ITM_NUMBER: VBAP-POSNR
+- ORDER_ITEM_IN-REASON_REJ: “00” (sem aspas) para recusar e " " para liberar
+- ORDER_ITEM_INX-ITM_NUMBER: VBAP-POSNR
+- ORDER_ITEM_INX-REASON_REJ: “X” (sem aspas)
 
 ## Conhecimentos aplicados
-- Dicionário de dados(SE11);
-- BAPI (BAPI_SALESORDER_CHANGE);
-- Module pool;
-- ABAP objects(SE24);
-- ALV OO (cl_gui_alv_grid).
+- tabelas internas;
+- operações de leitura (select);
+- loop, read table, select for all entries;
+- append;
+- funções; 
+- classes;
+- ALV com classes.
 
 ## Tela de seleção
 ![Tela de seleção](https://raw.githubusercontent.com/Rafael-Ienne/alv_recusa_libera.abap/main/img/tela_selecao.png)
@@ -22,7 +45,7 @@ Tal processo ocorre mediante o uso da BAPI (módulo de função que permite real
 # Após bloqueio da venda do item
 ![Após bloqueio](https://raw.githubusercontent.com/Rafael-Ienne/alv_recusa_libera.abap/main/img/apos_recusa.png)
 
-# Antes liberação da venda do item
+# Antes da liberação da venda do item
 ![Antes liberação](https://raw.githubusercontent.com/Rafael-Ienne/alv_recusa_libera.abap/main/img/antes_liberacao.png)
 
 # Após liberação da venda do item
