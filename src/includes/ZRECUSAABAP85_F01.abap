@@ -96,8 +96,15 @@ FORM f_recusar_ou_liberar.
           et_index_rows = gt_rows "Pegando as linhas selecionadas no ALV
       ).
 
+<<<<<<< HEAD
  IF lines( gt_rows ) IS INITIAL.
     MESSAGE 'Selecione ao menos uma linha' TYPE 'I' DISPLAY LIKE 'E'.
+=======
+  IF lines( gt_rows ) GT 1.
+    MESSAGE 'Selecione apenas uma linha' TYPE 'I' DISPLAY LIKE 'E'.
+  ELSEIF lines( gt_rows ) IS INITIAL.
+    MESSAGE 'Selecione uma linha' TYPE 'I' DISPLAY LIKE 'E'.
+>>>>>>> parent of 1d03875 (Merge branch 'main' of https://github.com/Rafael-Ienne/alv_recusa_libera.abap)
   ELSE.
 
     LOOP AT gt_rows INTO DATA(ls_row).
